@@ -1,0 +1,36 @@
+1. Open git bash
+   type nano helloworld.java it will create a java file to work on
+   next type the code to execute helloworld.java which is 
+                       public class helloworld {
+                       public static void main(String args[]) {
+                       System.out.println("Hello to my world");
+                      }
+                     }
+
+
+public class helloworld {
+  public static void main(String args[]) {
+    while(true) {
+       System.out.println("Hello to my world");
+       try {
+          Thread.sleep(60000);
+       } catch (Exception ex) {}
+    }
+  }
+}
+
+Rest of the commands which we learned in this day i couldn't get it to work like
+ctrl +Z - to stop the java
+$ jobs command 
+$ fg %1 - foreground
+$ bg %1 - background
+$ ps -elf
+$ ps -elf | grep java
+etc
+
+
+
+
+
+
+

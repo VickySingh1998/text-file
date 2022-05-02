@@ -1,0 +1,67 @@
+1.
+it will print how many .txt files are present in the folder
+
+$ for file in 'ls *.txt'
+> do
+> echo $file;
+> done
+ls abc.txt def.txt
+
+2. 
+to move abc.txt and def.txt to a folder
+
+$ for file in 'ls *.txt'
+> do
+> folderName = echo $file | awk -f '{print $1}';
+> ^C
+
+$ for file in ls *.txt
+> do
+> folderName= `echo $file | awk -F. '{print $1}'`;
+> echo $folderName;
+> done
+abc.txt  copyfiles.sh  def.txt  helloworld.java  linux-content  temp
+
+bash: abc: command not found
+
+bash: def: command not found
+
+3.
+$ nano copyfiles.sh
+                 bash -x ./copyfiles.sh
+                 for file in 'ls *.txt';
+                 do
+                 folderName= `echo $file | awk -F. '{print $1}'`;
+                 rm -r $folderName;
+                 mkdir $folderName;
+                 cp &file $folderName;
+                 done 
+
+$ cat copyfiles.sh
+   bash -x ./copyfiles.sh
+for file in 'ls *.txt';
+do
+folderName= `echo $file | awk -F. '{print $1}'`;
+rm -r $folderName;
+mkdir $folderName;
+cp &file $folderName;
+done
+
+$ chmod =x copyfiles.sh
+
+$ ./copyfiles.sh
+
++ bash -x ./copyfiles.sh
++ bash -x ./copyfiles.sh
++ bash -x ./copyfiles.sh
++ bash -x ./copyfiles.sh
++ bash -x ./copyfiles.sh
++ bash -x ./copyfiles.sh
++ bash -x ./copyfiles.sh
++ bash -x ./copyfiles.sh
++ bash -x ./copyfiles.sh
++ bash -x ./copyfiles.sh
++ bash -x ./copyfiles.sh
++ bash -x ./copyfiles.sh
+
+

@@ -1,0 +1,17 @@
+1.  pwd - to check current working directory
+2.  ls                      - to check contents of a directory 
+3.  ls ..                   - to check the files in the parent directory of the current directory
+4.  ls ~                    - to show the files of the home directory
+5.  cd ~                    - to go to the home directory 
+6.  cd -                    - to go back to the working directory
+7.  mkdir temp              - to create a directory 
+8.  rm -r temp              - to remove a directory
+9.  mkdir -p temp/temp      - to create a directory inside a directory
+10.  cd ..                  - to go back to the parent directory of the working directory
+11. cd temp or cd 'temp 1'  - to open a directory
+12. touch a.txt b.txt c.txt - to create .txt files 
+13. ls -l                   - to check contents of a directory in long format
+14. cp a.txt b.txt          - to copy the contents inside a file
+15. mv a.txt b.txt          - to move the file 
+16. where cp                - to find if the command is availabe to use in your os
+17. 
