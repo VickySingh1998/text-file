@@ -1,67 +1,85 @@
-1.
-it will print how many .txt files are present in the folder
+1. 
 
-$ for file in 'ls *.txt'
-> do
-> echo $file;
-> done
-ls abc.txt def.txt
-
-2. 
-to move abc.txt and def.txt to a folder
-
-$ for file in 'ls *.txt'
-> do
-> folderName = echo $file | awk -f '{print $1}';
-> ^C
+$ touch abc.txt def.txt  (it will create 2 .txt files that we need to move to a folder)
+$ ls *.txt
+abc.txt  def.txt  (to check if our txt files are ready or not)
 
 $ for file in ls *.txt
 > do
-> folderName= `echo $file | awk -F. '{print $1}'`;
-> echo $folderName;
+> echo $file
+> done     
+abc.txt
+def.txt     ( to know if the files coming properly to move o folder name)
+
+$ for file in ls *.txt
+> do
+> folderName=`echo $file | awk -F. '{print $1}'`;
+> echo $folderName
 > done
-abc.txt  copyfiles.sh  def.txt  helloworld.java  linux-content  temp
+abc
+def      (now we have extracted the folder name) 
 
-bash: abc: command not found
+$ for file in ls *.txt
+> do
+> folderName=`echo $file | awk -F. '{print $1}'`;
+> mkdir $folderName;
+> done  (now in this command we have finally made the directory) 
 
-bash: def: command not found
+$ ls -p
+abc/  abc.txt  def/  def.txt  helloworld.java  
 
-3.
-$ nano copyfiles.sh
-                 bash -x ./copyfiles.sh
-                 for file in 'ls *.txt';
-                 do
-                 folderName= `echo $file | awk -F. '{print $1}'`;
-                 rm -r $folderName;
-                 mkdir $folderName;
-                 cp &file $folderName;
-                 done 
+$ for file in ls *.txt
+> do
+> folderName=`echo $file | awk -F. '{print $1}'`;
+> rm -r $folderName;  (to make sure to remove the folder name because its already created and you want the shell run every time)
+> mkdir $folderName;  (created the folder)
+> cp $file $folderName; (copy the file in the folder)
+> done
 
-$ cat copyfiles.sh
-   bash -x ./copyfiles.sh
-for file in 'ls *.txt';
+$ ls abc def
+abc:
+abc.txt
+
+def:
+def.txt    
+
+2.
+
+making a shell file so that we can modify and run the file without copy pasting every time
+
+#!/bin/bash -x         (to run in a debug mode)
+for file in ls *.txt
 do
-folderName= `echo $file | awk -F. '{print $1}'`;
-rm -r $folderName;
-mkdir $folderName;
-cp &file $folderName;
+        folderName=`echo $file | awk -F. '{print $1}'`;
+        rm -r $folderName;
+        mkdir $folderName;
+        cp $file $folderName;
 done
+ctrl+X
 
-$ chmod =x copyfiles.sh
+$ chmod +x copyfiles.sh  (adding execution to our file)
+
+$ ls -l copyfiles.sh
+
+-rwxr-xr-x 1 vicky 197609 157 May  6 01:05 copyfiles.sh* (now executable mode is activated because we want to run our file)
 
 $ ./copyfiles.sh
 
-+ bash -x ./copyfiles.sh
-+ bash -x ./copyfiles.sh
-+ bash -x ./copyfiles.sh
-+ bash -x ./copyfiles.sh
-+ bash -x ./copyfiles.sh
-+ bash -x ./copyfiles.sh
-+ bash -x ./copyfiles.sh
-+ bash -x ./copyfiles.sh
-+ bash -x ./copyfiles.sh
-+ bash -x ./copyfiles.sh
-+ bash -x ./copyfiles.sh
-+ bash -x ./copyfiles.sh
+++ ls abc.txt def.txt
++ for file in ls *.txt
+++ echo abc.txt
+++ awk -F. '{print $1}'
++ folderName=abc
++ rm -r abc
++ mkdir abc
++ cp abc.txt abc
++ for file in ls *.txt
+++ echo def.txt
+++ awk -F. '{print $1}'
++ folderName=def
++ rm -r def
++ mkdir def
++ cp def.txt def
 
+  
 

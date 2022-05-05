@@ -28,9 +28,52 @@ $ ps -elf
 $ ps -elf | grep java
 etc
 
+AWK Commands 
+
+$ echo Hello tom
+Hello tom
+
+$ echo Hello tom | awk '{$2="Adam"} {print $0}'
+Hello Adam   (hello tom is now changed to hello adam with the help of awk command)
 
 
+$ echo Hello tom | awk 'BEGIN {$2="Adam"} END {print $0}'
+Hello tom     (awk has an understanding of pre processing and post processing every pre processing and post processing is by curly braces) 
+               ex - for loop is a pre process
 
+to find a data find salary name total salary and average salary of captain
+
+
+$ cat data.csv
+Id EmployeeName JobTitle        BasePay OvertimePay OtherPay TotalPay TotalPayBenefits
+1  NATHANIEL    GM              167411  0           400184   567595   567595
+2  GARY         CAPTAIN         155966  245131      137811   538909   538909
+3  ALBERT       CAPTAIN         212739  106088      16452    335279   335279
+4  CHRISTOPHER  MECHANIC        77916   56120       198306   332343   332343
+5  PATRICK      DEPUTYCHIEF     134401  9737        182234   326373   326373
+6  DAVID        ASSTDEPUTY      118602  8601        189082   316285   316285
+7  ALSON        BATTALIONCHIEF  92492   89062       134426   315981   315981
+8  DAVID        DEPUTYDIRECTOR  256576  0           51322    307899   307899
+10 JOANNE       CHIEF           285262  0           17115    302377   302377
+12 PATRICIA     CAPTAIN         99722   87082       110804   297608   297608
+13 EDWARD       EXECUTIVE       294580  0           0        294580   294580
+
+
+$ cat data.csv | grep -i CAPTAIN
+2  GARY         CAPTAIN         155966  245131      137811   538909   538909
+3  ALBERT       CAPTAIN         212739  106088      16452    335279   335279
+12 PATRICIA     CAPTAIN         99722   87082       110804   297608   297608  (to show data of the captains only)
+
+$ cat data.csv | grep -i CAPTAIN | awk '{print $2 " " $4}'
+GARY 155966
+ALBERT 212739
+PATRICIA 99722            (to find name and salary of the captains)
+
+$ cat data.csv | grep -i CAPTAIN | awk '{sum+=$4} END{print sum}' (to find total salary of the captain)
+468427
+
+$ cat data.csv | grep -i CAPTAIN | awk '{sum+=$4} END{print sum/NR}' (to find average salary of the captain)
+156142
 
 
 
