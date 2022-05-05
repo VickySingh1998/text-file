@@ -81,5 +81,22 @@ $ ./copyfiles.sh
 + mkdir def
 + cp def.txt def
 
-  
+3. 
+
+#!/bin/bash -x
+for file in ls *.txt
+do
+        folderName=`echo $file | awk -F. '{print $1}'`;
+        if [ -d $folderName ]
+        then
+          rm -r $folderName;
+        fi
+        mkdir $folderName;
+        cp $file $folderName;
+done
+
+we are doing this to put if then statement to run the execution if it finds a folder with same name it will remove it
+and create and if it doesnt find anything it will just skip the rm command and execute.
+
+
 
